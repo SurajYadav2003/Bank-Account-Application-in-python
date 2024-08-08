@@ -1,0 +1,43 @@
+class BankAccount:
+    def __init__(self, account_number, current_balance):
+        self.__account_number = account_number
+        self.__current_balance = current_balance
+
+    def deposit(self, amount_deposit):
+        if amount_deposit > 0:
+            self.__current_balance += amount_deposit
+            print(f"Amount deposited: ${amount_deposit:.2f}")
+        else:
+            print("Deposit amount must be greater than zero.")
+
+    def withdraw(self, amount_withdraw):
+        if amount_withdraw <= 0:
+            print("Withdrawal amount must be greater than zero.")
+        elif amount_withdraw > self.__current_balance:
+            print("Insufficient balance to withdraw!")
+        else:
+            self.__current_balance -= amount_withdraw
+            print(f"Amount withdrawn: ${amount_withdraw:.2f}")
+            print(f"Current balance: ${self.__current_balance:.2f}")
+
+    def display_account_details(self):
+        print(f"Your current Balance: ${self.__current_balance:.2f}")
+
+def main():
+    bank_name = input("Enter the bank name: ")
+    account_number = input("Enter your account number: ")
+    current_balance = float(input("Enter your current balance: "))
+    amount_deposit = float(input("Enter amount to deposit: "))
+    amount_withdraw = float(input("Enter amount to withdraw: "))
+
+    account = BankAccount(account_number, current_balance)
+    
+    print(f"Welcome to {bank_name}")
+    account.display_account_details()
+    
+    account.deposit(amount_deposit)
+    
+    account.withdraw(amount_withdraw)
+
+if __name__ == "__main__":
+    main()
